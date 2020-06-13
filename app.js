@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var text = require('./data/project.json');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -54,9 +55,9 @@ app.use(function(err, req, res, next) {
   res.locals.title = 'API Route Not Supported';
   res.locals.message = 'Supported routes listed below';
 
-  var supportedRoutes = ['/users', '/user/{id}','/users/near/{id}','/users/near?lat={latitude}&lng={longitude}', '/users/near?lat={latitude}&lng={longitude}&radius={miles}']
+  // var supportedRoutes = ['/users', '/user/{id}','/users/near/{id}','/users/near?lat={latitude}&lng={longitude}', '/users/near?lat={latitude}&lng={longitude}&radius={miles}']
 
-  res.locals.supported = supportedRoutes;
+  res.locals.supported = text[0].supportedRoutes;
 
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

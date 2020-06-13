@@ -1,0 +1,15 @@
+[
+    {
+        "project": "Node.js Location API",
+        "description": "This API is used to get users who live within a set of parameters such as latitude, longitude and radius. The default where no parameters have been entered is to assume location (lat, long) of London with a radius of 50 miles.",
+        "repo": "https://github.com/collings22/location-api",
+        "author": "Daniel Collings",
+        "supportedRoutes":[
+            "/users", 
+            "/user/{id}",
+            "/users/near/{id}",
+            "/users/near?lat={latitude}&lng={longitude}",
+            "/users/near?lat={latitude}&lng={longitude}&radius={miles}"
+        ]
+    }
+]
