@@ -51,7 +51,13 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
+  res.locals.title = 'API Route Not Supported';
+  res.locals.message = 'Supported routes listed below';
+
+  var supportedRoutes = ['/users', '/user/{id}','/users/near/{id}','/users/near?lat={latitude}&lng={longitude}', '/users/near?lat={latitude}&lng={longitude}&radius={miles}']
+
+  res.locals.supported = supportedRoutes;
+
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
