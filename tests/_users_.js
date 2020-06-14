@@ -3,11 +3,11 @@ const app = require('../app');
 
 describe('TESTING USERS ROUTE', function () {
   it('Get a list of all users within 50 mile radius of London', (done) => {
-      request(app)
-          .get('/users')
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200, done);
+    request(app)
+      .get('/users')
+      .set('Accept', 'application/json')
+      .expect('Content-Type', /json/)
+      .expect(200, done);
   });
 
 

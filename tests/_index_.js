@@ -2,38 +2,20 @@ const request = require('supertest');
 const app = require('../app');
 const chai = require('chai')
 
-describe('TESTING USER ROUTE', () => {
+describe('TESTING INDEX ROUTE', () => {
 
-  it('Get user by id', (done) => {
+  it('Get index information', (done) => {
     request(app)
-      .get('/user/1')
+      .get('/')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200, done);
   });
 
-  it('Get one user by invalid numbered id', (done) => {
+  it('Get index information', (done) => {
     request(app)
-      .get('/user/0')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200, done)
-      .expect((res) => {
-        chai.assert.equal(res.body.message.includes('doesn\'t exist'), true);
-      });
+      .get('/1')
+      .expect(404, done);
   });
-
-
-  it('Get one user by invalid characters id', (done) => {
-    request(app)
-      .get('/user/fred')
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200, done)
-      .expect((res) => {
-        chai.assert.equal(res.body.message.includes('doesn\'t exist'), true);
-      });
-  });
-
 
 });
