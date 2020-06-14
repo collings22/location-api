@@ -56,7 +56,7 @@ router.get('/near/:id', function(req, res, next) {
 //accepts params for latitude, longitude and radius.
 router.get('/near', function(req, res, next) {
   const radius = ((req.query.radius.length === 0 ? 50 : req.query.radius) * 1.609344);
-  var [baseLat,baseLng] = [req.query.lat, req.query.lng];
+  var [baseLat, baseLng] = [req.query.lat, req.query.lng];
 
   if(baseLat.length == 0 || baseLng.length == 0){
     res.render('error');
