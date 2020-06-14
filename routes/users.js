@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
   request
     .get('https://bpdts-test-app.herokuapp.com/users', (error, response, body) => {
       if(error) {
+        res.statusCode(500)
         return console.dir(error);
       }
       var data = JSON.parse(body);
@@ -30,11 +31,18 @@ router.get('/near/:id', function(req, res, next) {
   const radius = (50 * 1.609344);
   var userId = req.params.id;
 
+  if(userId.match(/[a-zA-Z!@#\$%\^\&*\)\(+=._-]/) || userId == '0'){
+    res.status(err.status || 500);
+    res.render('error');
+  }
+  
   request
     .get('https://bpdts-test-app.herokuapp.com/users', (error, response, body) => {
       if(error) {
-        return console.dir(error);
+        res.status(err.status || 500);
+        res.render('error');
       }
+
       var data = JSON.parse(body);
       var copy = Object.assign([],data);
       var user = copy.filter(function(person) {
@@ -59,14 +67,17 @@ router.get('/near', function(req, res, next) {
   var [baseLat, baseLng] = [req.query.lat, req.query.lng];
 
   if(baseLat.length == 0 || baseLng.length == 0){
+    res.status(err.status || 500);
     res.render('error');
   }
 
   request
     .get('https://bpdts-test-app.herokuapp.com/users', (error, response, body) => {
       if(error) {
-        return console.dir(error);
+        res.status(err.status || 500);
+        res.render('error');
       }
+
       var data = JSON.parse(body);
 
       var arr =  data.filter(function(person) {

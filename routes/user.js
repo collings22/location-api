@@ -8,6 +8,11 @@ var calculation = require('../utils/calculation.js');
 router.get('/:id', function(req, res, next) {
   var userId = req.params.id;
 
+  if(userId.match(/[a-zA-Z!@#\$%\^\&*\)\(+=._-]/)){
+    res.status(err.status || 500);
+    res.render('error');
+  }
+
   request
     .get('https://bpdts-test-app.herokuapp.com/user/'+userId, (error, response, body) => {
       if(error) {
