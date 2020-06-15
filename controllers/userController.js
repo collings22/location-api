@@ -1,8 +1,8 @@
-var request = require('request');
-var calculation = require('../utils/calculation.js');
+const request = require('request');
+const calculation = require('../utils/calculation.js');
 
 exports.GetUserById = (req, res) => {
-    var userId = req.params.id;
+    let userId = req.params.id;
 
     if (userId.match(/[a-zA-Z!@#\$%\^\&*\)\(+=._-]/)) {
         res.status(err.status || 500);
@@ -25,7 +25,7 @@ exports.GetUserById = (req, res) => {
 }
 
 exports.GetUsersInLondonRadius = (req, res) => {
-    const radius = (50 * 1.609344);
+    let radius = (50 * 1.609344);
 
     request
         .get('https://bpdts-test-app.herokuapp.com/users', (error, response, body) => {
@@ -47,7 +47,7 @@ exports.GetUsersInLondonRadius = (req, res) => {
 }
 
 exports.GetUsersInRadiusOfUserId = (req, res) => {
-    const radius = (50 * 1.609344);
+    let radius = (50 * 1.609344);
     var userId = req.params.id;
 
     if (userId.match(/[a-zA-Z!@#\$%\^\&*\)\(+=._-]/) || userId == '0') {
@@ -80,7 +80,7 @@ exports.GetUsersInRadiusOfUserId = (req, res) => {
 }
 
 exports.GetUsersInRadiusOfLocation = (req, res) => {
-    const radius = ((req.query.radius.length === 0 ? 50 : req.query.radius) * 1.609344);
+    let radius = ((req.query.radius.length === 0 ? 50 : req.query.radius) * 1.609344);
     var [baseLat, baseLng] = [req.query.lat, req.query.lng];
 
     if (baseLat.length == 0 || baseLng.length == 0) {

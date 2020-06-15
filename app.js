@@ -1,18 +1,22 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
-var text = require('./data/project.json');
-var http = require('http');
-var debug = require('debug')('server:server');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
+const http = require('http');
+const debug = require('debug')('server:server');
+const helmet = require('helmet');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var userRouter = require('./routes/user');
+let text = require('./data/project.json');
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+let userRouter = require('./routes/user');
 
-var app = express();
+let app = express();
+
+app.use(helmet());
+app.disable('x-powered-by');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

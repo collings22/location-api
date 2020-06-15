@@ -1,6 +1,5 @@
 const request = require('supertest');
-const app = require('../app');
-const chai = require('chai')
+const app = require('../../app');
 
 describe('TESTING INDEX ROUTE', () => {
 
@@ -9,12 +8,12 @@ describe('TESTING INDEX ROUTE', () => {
       .get('/')
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
-      .expect(200, done);
+      .expect(200, done)
   });
 
-  it('Get index information', (done) => {
+  it('Get 404 when param not empty', (done) => {
     request(app)
-      .get('/1')
+      .get('/1')    
       .expect(404, done);
   });
 
